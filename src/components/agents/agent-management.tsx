@@ -4,6 +4,7 @@
 import { useMemo, useState } from "react";
 import { agents } from "@/data/agents";
 import type { AgentCategory } from "@/types/agent";
+import Link from "next/link";
 
 const categories: Array<"All" | AgentCategory> = [
   "All",
@@ -142,10 +143,11 @@ export default function AgentManagement() {
 
       <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {filteredAgents.map((agent) => (
-          <article
-            key={agent.id}
-            className="rounded-xl border border-zinc-800 bg-[#111114] p-6 transition hover:border-zinc-600"
-          >
+          <Link
+  key={agent.id}
+  href={`/agents/${agent.id}`}
+  className="block rounded-xl border border-zinc-800 bg-[#111114] p-6 transition hover:border-blue-500/50"
+>
             <div className="flex items-start justify-between gap-3">
               <div className="flex size-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-lg font-semibold text-blue-400">
                 {agent.name.charAt(0)}
@@ -199,7 +201,7 @@ export default function AgentManagement() {
                   : "Not configured"}
               </p>
             </div>
-          </article>
+          </Link>
         ))}
       </section>
 
